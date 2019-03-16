@@ -34,10 +34,37 @@ public class ParoleController {
     private TextArea txtResult; // Value injected by FXMLLoader
     
     @FXML
+    private TextArea txtTempo;
+    
+    @FXML
     private Button btnReset;
 
     @FXML // fx:id="btnInserisci"
     private Button btnInserisci; // Value injected by FXMLLoader
+    
+    @FXML
+    private Button bttCancella;
+
+    @FXML
+    void doCancella(ActionEvent event) {
+    	txtResult.clear();
+    	String p = txtParola.getText();
+    	if(!p.matches("[a-zA-Z]+")) {
+			txtResult.appendText("Devi inserire una parola\n");
+			throw new InvalidParameterException("Devi inserire una parola\n");
+		}
+    	
+    	if(elenco.presente(p)==true) {
+    	elenco.cancellaParola(p);
+    	txtResult.appendText("Le parole inserite sono:\n");
+    	txtResult.appendText(elenco.elencoAlfabetico());
+    	}
+    	else {
+    		txtResult.appendText("Impossibile cancellare parola non presente\n");
+    	}
+    	txtTempo.appendText("Tempo di esecuzione: "+System.nanoTime()+"\n");
+    }
+
 
     @FXML
     void doInsert(ActionEvent event) {
@@ -48,17 +75,21 @@ public class ParoleController {
 			throw new InvalidParameterException("Devi inserire una parola\n");
 		}
     	
-    	
+    	if(!elenco.presente(p))
     	elenco.addParola(p);
     	txtResult.appendText("Le parole inserite sono:\n");
     	txtResult.appendText(elenco.elencoAlfabetico());
     	
+    	txtParola.clear();
+    	txtTempo.appendText("Tempo di esecuzione: "+System.nanoTime()+"\n");
     }
     
     @FXML
     void doReset(ActionEvent event) {
     	txtResult.clear();
     	elenco.reset();
+    	txtTempo.clear();
+    	//txtTempo.appendText("Tempo di esecuzione: "+System.nanoTime()+"\n");
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

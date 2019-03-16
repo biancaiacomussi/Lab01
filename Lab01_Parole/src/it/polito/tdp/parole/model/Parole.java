@@ -17,9 +17,24 @@ public class Parole implements Comparator<String>{
 		parole.add(p);
 	}
 	
+	public void cancellaParola(String p) {
+		parole.remove(p);
+	}
+	
 	public List<String> getElenco() {
 		Collections.sort(parole);
 		return parole;
+	}
+	
+	public boolean presente(String p) {
+		for(String s : parole) {
+			if(s.equals(p))
+				return true;
+
+		}
+		
+		return false;
+		
 	}
 	
 	public String elencoAlfabetico() {
