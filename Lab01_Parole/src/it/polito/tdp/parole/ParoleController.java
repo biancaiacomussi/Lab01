@@ -8,6 +8,7 @@ package it.polito.tdp.parole;
 import it.polito.tdp.parole.model.Parole;
 
 import java.net.URL;
+import java.security.InvalidParameterException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -40,12 +41,24 @@ public class ParoleController {
 
     @FXML
     void doInsert(ActionEvent event) {
-    	// TODO
+    	txtResult.clear();
+    	String p = txtParola.getText();
+    	if(!p.matches("[a-zA-Z]+")) {
+			txtResult.appendText("Devi inserire una parola\n");
+			throw new InvalidParameterException("Devi inserire una parola\n");
+		}
+    	
+    	
+    	elenco.addParola(p);
+    	txtResult.appendText("Le parole inserite sono:\n");
+    	txtResult.appendText(elenco.elencoAlfabetico());
+    	
     }
     
     @FXML
     void doReset(ActionEvent event) {
-    	// TODO
+    	txtResult.clear();
+    	elenco.reset();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

@@ -1,24 +1,48 @@
 package it.polito.tdp.parole.model;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
-public class Parole {
+public class Parole implements Comparator<String>{
+	
+	List <String > parole;
 		
 	public Parole() {
-		//TODO
+		parole = new LinkedList<String>();
 	}
 	
 	public void addParola(String p) {
-		//TODO
+		parole.add(p);
 	}
 	
 	public List<String> getElenco() {
-		//TODO
-		return null;
+		Collections.sort(parole);
+		return parole;
+	}
+	
+	public String elencoAlfabetico() {
+		
+		String ris = "";
+		Collections.sort(parole);
+		for(String s : parole) {
+			ris += s+"\n";
+		}
+		
+		return ris;
+		
 	}
 	
 	public void reset() {
-		// TODO
+		parole.clear();
+	}
+
+	
+	@Override
+	public int compare(String s1, String s2) {
+		
+		return s1.compareTo(s2);
 	}
 
 }
