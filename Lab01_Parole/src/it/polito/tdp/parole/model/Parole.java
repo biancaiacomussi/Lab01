@@ -1,5 +1,6 @@
 package it.polito.tdp.parole.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -10,7 +11,7 @@ public class Parole implements Comparator<String>{
 	List <String > parole;
 		
 	public Parole() {
-		parole = new LinkedList<String>();
+		parole = new ArrayList<String>();
 	}
 	
 	public void addParola(String p) {
