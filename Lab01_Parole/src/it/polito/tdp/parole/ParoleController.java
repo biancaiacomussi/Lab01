@@ -47,6 +47,7 @@ public class ParoleController {
 
     @FXML
     void doCancella(ActionEvent event) {
+    	double start = System.nanoTime();
     	txtResult.clear();
     	String p = txtParola.getText();
     	if(!p.matches("[a-zA-Z]+")) {
@@ -62,12 +63,15 @@ public class ParoleController {
     	else {
     		txtResult.appendText("Impossibile cancellare parola non presente\n");
     	}
-    	txtTempo.appendText("Tempo di esecuzione: "+System.nanoTime()+"\n");
+    	double end = System.nanoTime();
+    	txtTempo.appendText("Tempo di esecuzione: "+((end-start)/1000000000)+"\n");
+
     }
 
 
     @FXML
     void doInsert(ActionEvent event) {
+    	double start = System.nanoTime();
     	txtResult.clear();
     	String p = txtParola.getText();
     	if(!p.matches("[a-zA-Z]+")) {
@@ -81,7 +85,8 @@ public class ParoleController {
     	txtResult.appendText(elenco.elencoAlfabetico());
     	
     	txtParola.clear();
-    	txtTempo.appendText("Tempo di esecuzione: "+System.nanoTime()+"\n");
+    	double end = System.nanoTime();
+    	txtTempo.appendText("Tempo di esecuzione: "+((end-start)/1000000000)+"\n");
     }
     
     @FXML
